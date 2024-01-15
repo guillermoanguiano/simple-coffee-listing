@@ -1,15 +1,22 @@
 import { useEffect, useState } from "react"
 import Item from "./components/Item";
+import { ClipLoader } from "react-spinners";
+
+const override = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "red",
+};
 
 const CoffeeListingApp = () => {
 
   const [isActive, setIsActive] = useState(true)
-
   const [data, setData]         = useState([])
-
   const [available, setAvailable] = useState([])
+  const [loading , setLoading]  = useState(true)
 
   useEffect(() => {
+    setLoading(true)
     const fetchData = async () => {
       try {
         const response = await fetch('https://raw.githubusercontent.com/devchallenges-io/web-project-ideas/main/front-end-projects/data/simple-coffee-listing-data.json');
@@ -19,6 +26,8 @@ const CoffeeListingApp = () => {
         const dataAvailable = data.filter( datos => datos.available)
 
         setAvailable(dataAvailable)
+
+        setLoading(false)
 
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -45,10 +54,18 @@ const CoffeeListingApp = () => {
           </div>
 
 
-          <div className="grid lg:grid-cols-2 xl:grid-cols-3 w-5/6 gap-8">
-            { isActive ? (
-              data.map( item => (
-                <Item 
+          { loading ? (
+                <ClipLoader
+                  css={override}
+                  size={150}
+                  color={"#FFF"}
+                  loading={loading}
+                />
+            ) : (
+              <div className="grid lg:grid-cols-2 xl:grid-cols-3 w-5/6 gap-8">
+                { isActive ? (
+                data.map( item => (
+                  <Item 
                   key={item.id}
                   name={item.name}
                   image={item.image}
@@ -57,8 +74,8 @@ const CoffeeListingApp = () => {
                   votes={item.votes}
                   popular={item.popular}
                   available={item.available}
-                />
-              ))) : (
+                  />
+                ))) : (
                 available.map( item => (
                   <Item 
                     key={item.id}
@@ -71,8 +88,11 @@ const CoffeeListingApp = () => {
                     available={item.available}
                   />
                 ))
-              )}
-          </div>
+                )}
+              </div>
+            )}
+
+          
         </div>
     </>
   )
