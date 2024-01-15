@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background: linear-gradient( #111315, #111315);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fef7ee;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 19.5rem;
+    background-image: url(./assets/imgs/bg-cafe.jpg);
+    background-position: center top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+.vector {
+    background-image: url(./assets/imgs/vector.svg);
+    background-repeat: no-repeat;
+    background-position: top 2rem right 20rem;
+}
+
+.bg-color-p {
+    background-color: #1B1D1F ;
+}
+
+.btn-true {
+    background-color: #6F757C;
+}
+
+.text-color {
+    color: #6F757C;
+}
+
+.popular {
+    background-color: #F6C768;
+    position: absolute;
+    margin: 7.5px;
+    padding: 5px;
+    border-radius: 0.5rem;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.text-black-custom {
+    color: #111315;
+}
+
+.text-white-custom {
+    color: #FEF7EE;
+}
+
+.bg-yellow-custom {
+    background-color: #BEE3CC;
+}
+
+.text-red-custom {
+    color: #ED735D;
+}
+
+.sold-out {
+    font-weight: 500;
+}
